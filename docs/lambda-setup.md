@@ -151,7 +151,7 @@ aws sts get-caller-identity --query 'Account' --output text
 aws lambda create-function \
   --function-name metadata-extractor \
   --package-type Image \
-  --code ImageUri=<AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/metadata-extractor:<IMAGE_TAG> \
+  --code ImageUri=131250745028.dkr.ecr.us-east-1.amazonaws.com/metadata-extractor:<IMAGE_TAG> \
   --role <ROLE_ARN> \
   --timeout 30 \
   --memory-size 128 \
