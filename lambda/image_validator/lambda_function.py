@@ -39,7 +39,7 @@ def lambda_handler(event, context):
     important: to trigger the DLQ, you must raise an exception (not return an error).
     """
 
-      print("=== image validator invoked ===")
+    print("=== image validator invoked ===")
 
     for record in event.get('Records', []):
         sns_message = record['Sns']['Message']
@@ -50,7 +50,7 @@ def lambda_handler(event, context):
             key = s3_record['s3']['object']['key']
 
             if is_valid_image(key):
-                print(f" {key} is ok")
+                print(f"[VALID] {key} is a valid image file")
                 filename = key.split('/')[-1]
                 s3.copy_object(
                     Bucket=bucket,
@@ -58,7 +58,7 @@ def lambda_handler(event, context):
                     CopySource={'Bucket': bucket, 'Key': key},
                 )
             else:
-                print(f"invalid {key}")
+                print(f"[INVALID] {key} is not a valid image type")
                 raise ValueError(f"invalid image: {key}")
 
     return {'statusCode': 200, 'body': 'validation complete'}

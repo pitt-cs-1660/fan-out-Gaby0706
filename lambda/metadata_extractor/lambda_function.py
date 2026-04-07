@@ -47,10 +47,10 @@ def lambda_handler(event, context):
             size = s3_record['s3']['object']['size']
             event_time = s3_record['eventTime']
 
-            print(f"File: {key}")
-            print(f"Bucket: {bucket}")
-            print(f"Size: {size} bytes")
-            print(f"Upload Time: {event_time}")
+            print(f"[METADATA] File: {key}")
+            print(f"[METADATA] Bucket: {bucket}")
+            print(f"[METADATA] Size: {size} bytes")
+            print(f"[METADATA] Upload Time: {event_time}")
 
             metadata = {
                 'file': key,
